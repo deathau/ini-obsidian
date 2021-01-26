@@ -12,8 +12,8 @@ This is all very much just a proof of concept for now. Expect bugs and data loss
 ## Installation
 
 ### From GitHub
-- Download the [Latest release](https://github.com/deathau/cm-show-whitespace-obsidian/releases/latest)
-- Extract the `cm-show-whitespace-obsidian` folder from the zip to your vault's plugins folder: `<vault>/.obsidian/plugins/`  
+- Download the latest master
+- Extract the files from the zip to your vault's plugins folder: `<vault>/.obsidian/plugins/ini-obsidian`  
 Note: On some machines the `.obsidian` folder may be hidden. On MacOS you should be able to press `Command+Shift+Dot` to show the folder in Finder.
 - Reload Obsidian
 - If prompted about Safe Mode, you can disable safe mode and enable the plugin.
