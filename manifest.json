@@ -1,0 +1,10 @@
+{
+  "id": "ini-obsidian",
+  "name": ".ini Editor",
+  "author": "death_au",
+  "authorUrl": "https://github.com/deathau",
+  "description": "Edit ini files in Obsidian",
+  "isDesktopOnly": false,
+  "version": "0.0.0",
+  "minAppVersion": "0.10.10"
+}
