@@ -8,6 +8,7 @@ export default class IniPlugin extends Plugin {
   settings: any;
 
   async onload() {
+    super.onload();
     this.settings = await this.loadData() || {} as any;
 
     // register a custom icon
@@ -47,20 +48,16 @@ class IniView extends TextFileView {
     return this.contentEl;
   }
 
-  // on load, add code mirror
-  onload = () => {
+  // constructor
+  constructor(leaf: WorkspaceLeaf) {
+    super(leaf);
+
+    // create code mirror instance
     this.codeMirror = CodeMirror(this.extContentEl, {
       theme: "obsidian"
     });
     // register the changes event
     this.codeMirror.on('changes', this.changed);
-  }
-
-  // on unload clean up code mirror
-  onunload = () => {
-    this.codeMirror.off('changes', this.changed);
-    this.extContentEl.removeChild(this.codeMirror.getWrapperElement());
-    this.codeMirror = null;
   }
 
   // called on code mirror changes
@@ -76,8 +73,12 @@ class IniView extends TextFileView {
 
   // set the file contents
   setViewData = (data: string, clear: boolean) => {
-    // load the file contents in to codemirror
-    this.codeMirror.swapDoc(CodeMirror.Doc(data, "text/x-ini"))
+    if (clear) {
+      this.codeMirror.swapDoc(CodeMirror.Doc(data, "text/x-ini"))
+    }
+    else {
+      this.codeMirror.setValue(data);
+    }
   }
 
   // clear the view content
