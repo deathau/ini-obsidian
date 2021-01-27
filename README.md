@@ -3,8 +3,8 @@ A plugin for [Obsidian](https://obsidian.md) which allows editing of .ini files.
 
 ### Compatibility
 
-The current API of this repo targets Obsidian **v0.10.10**.  
-It won't work in versions below that due to the apis handling custom file types only being exposed in 0.10.10
+The current API of this repo targets Obsidian **v0.10.11**.  
+It won't work in versions below that due to the apis used only being exposed in 0.10.11
 
 ### Notes
 This is all very much just a proof of concept for now. Expect bugs and data loss. This is just to prove to myself I *can* handle custom files, before moving on to more interesting files (e.g. CSV) in future.
