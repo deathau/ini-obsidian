@@ -1,5 +1,5 @@
 import './styles.scss'
-import { Plugin,  EditableFileView, WorkspaceLeaf, ViewStateResult, addIcon } from 'obsidian';
+import { Plugin,  EditableFileView, WorkspaceLeaf, ViewStateResult, addIcon, TFile } from 'obsidian';
 import './lib/codemirror'
 import './mode/properties/properties'
 
@@ -53,11 +53,9 @@ class IniView extends EditableFileView {
     super(leaf);
   }
 
-  // onload, load up code mirror
-  onload = () => {
-    // call the parent (just in case)
-    super.onload();
-
+  // when a file is loaded (thanks, Licat!)
+  onLoadFile = async (file: TFile) => {
+    console.log("onLoadFile", file.name);
     if (!this.codeMirror) {
       // codeMirror in ini mode (obsidian theme)
       this.codeMirror = CodeMirror(this.extContentEl, {
@@ -67,32 +65,20 @@ class IniView extends EditableFileView {
       // register the changes event
       this.codeMirror.on('changes', this.changed);
     }
+
+    // load the file contents in to codemirror
+    this.codeMirror.swapDoc(CodeMirror.Doc(await this.app.vault.cachedRead(file), "text/x-ini"))
   }
 
-  // onunload, clean up
-  onunload = () => {
-    // stop the current change timer (if any)
-    this.stopChangeTimer();
-    // save the current file
-    this.save();
-    // clean up code mirror
-    this.codeMirror.off('changes', this.changed);
-    delete this.codeMirror;
-    // call the parent (just in case)
-    super.onunload();
-  }
-
-  // called when state is changed, including setting a file
-  setState = (state: any, result: ViewStateResult) => {
-    // do the default, then call refresh
-    return super.setState(state, result)
-      .then(() => this.app.vault.cachedRead(this.file))
-      .then((fileContents: string) => {
-        // if we have a file that's not loaded into codeMirror yet, load it up
-        if (this.file && this.codeMirror && !this.codeMirror.getValue()) {
-          this.codeMirror.setValue(fileContents);
-        }
-      });
+  // when a file is unloaded (thanks, Licat!)
+  onUnloadFile = (file: TFile) => {
+    console.log("unloadFile", file.name);
+    if (this.changeTimer) {
+      // stop the current change timer (if any)
+      this.stopChangeTimer();
+      // save the current file
+      this.save(file);
+    }
   }
 
   // called on code mirror changes
@@ -100,7 +86,7 @@ class IniView extends EditableFileView {
     // stop the current change timer (if any)
     this.stopChangeTimer();
     // set a change timer for saving in 2 seconds
-    this.changeTimer = setTimeout(this.save, 2000);
+    this.changeTimer = setTimeout(this.save, 2000, this.file);
   }
 
   // stops the current change timer (if any)
@@ -112,8 +98,8 @@ class IniView extends EditableFileView {
   }
 
   // saves the file
-  save = async () => {
-    await this.app.vault.modify(this.file, this.codeMirror.getValue());
+  save = async (file: TFile) => {
+    await this.app.vault.modify(file, this.codeMirror.getValue());
     console.log("SAVED ini");
   }
 
