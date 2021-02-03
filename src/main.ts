@@ -60,6 +60,11 @@ class IniView extends TextFileView {
     this.codeMirror.on('changes', this.changed);
   }
 
+  // when the view is resized, refresh CodeMirror (thanks Licat!)
+  onResize() {
+    this.codeMirror.refresh();
+  }
+
   // called on code mirror changes
   changed = async (instance: CodeMirror.Editor, changes: CodeMirror.EditorChangeLinkedList[]) => {
     // request a debounced save in 2 seconds from now
