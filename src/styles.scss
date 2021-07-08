@@ -12,3 +12,18 @@
 .workspace-leaf-content[data-type="ini"] .cm-s-obsidian .cm-quote {
   color: var(--text-normal);
 }
+.workspace-leaf-content[data-type="xml"] .view-content {
+  font-family: var(--font-monospace);
+}
+.workspace-leaf-content[data-type="xml"] .cm-s-obsidian .cm-header {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+.workspace-leaf-content[data-type="xml"] .cm-s-obsidian .cm-def {
+  color: var(--text-normal);
+  font-weight: 600;
+}
+.workspace-leaf-content[data-type="xml"] .cm-s-obsidian .cm-quote {
+  color: var(--text-normal);
+}
+

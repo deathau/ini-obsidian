@@ -3,8 +3,8 @@
   "name": "ini Editor",
   "author": "death_au",
   "authorUrl": "https://github.com/deathau",
-  "description": "Edit ini files in Obsidian",
+  "description": "Edit ini, xml, and fodt files in Obsidian",
   "isDesktopOnly": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "minAppVersion": "0.10.12"
 }
