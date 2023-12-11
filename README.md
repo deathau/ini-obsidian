@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This plugin was only ever an experiment and was never supported properly. If you _really_ want to open ini files in Obsidian, I'd recommend givng [Unitade](https://github.com/Falcion/UnitadeOBSIDIAN) a try
+
 # .ini Editor Obsidian Plugin
 A plugin for [Obsidian](https://obsidian.md) which allows editing of .ini files.
 
