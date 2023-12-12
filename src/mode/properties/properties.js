@@ -74,5 +74,6 @@ CodeMirror.defineMode("properties", function() {
 
 CodeMirror.defineMIME("text/x-properties", "properties");
 CodeMirror.defineMIME("text/x-ini", "properties");
+CodeMirror.defineMIME("text/xml", "properties");
 
 });

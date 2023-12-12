@@ -1,7 +1,7 @@
 {
   "name": "ini-obsidian",
-  "version": "0.0.2",
-  "description": "Edit ini files",
+  "version": "0.0.3",
+  "description": "Edit ini, xml, and fodt files",
   "main": "main.js",
   "scripts": {
     "install-deps": "npm install",
